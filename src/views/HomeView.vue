@@ -1,18 +1,30 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<div>
+  <h1>Rick and Morty</h1>
+  <Cards :personajesProps='personajes'/>
+</div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import Cards from '@/components/Cards.vue'
 export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
-  }
-}
+  data() {
+    return{
+      personajes:[]
+    }
+  },
+
+  components:{
+    Cards,
+  },
+
+ async created() {
+  const response = await fetch("https://rickandmortyapi.com/api/character");
+  const data = await response.json();
+  this.personajes = data.results;
+},
+
+};
 </script>
+
+<style></style>
