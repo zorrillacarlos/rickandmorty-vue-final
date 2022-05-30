@@ -1,27 +1,11 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import Axios from "axios";
+import characterStore from "./charactersRickAndMorty";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-    characters: [],
+  modules: {
+    charactersRickAndMorty: characterStore,
   },
-  getters: {},
-  mutations: {
-    loadCharacters(state, param) {
-      state.characters = param.results;
-    },
-  },
-  actions: {
-    async getCharacters({commit}) {
-      await Axios
-        .get("https://rickandmortyapi.com/api/character")
-        .then((response) => {
-          commit("loadCharacters", response.data);
-        });
-    },
-  },
-  modules: {},
 });

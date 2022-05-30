@@ -16,11 +16,11 @@ export default {
   },
 
   computed: {
-    ...mapState(["characters"]),
+    ...mapState("charactersRickAndMorty",["characters"]),
   },
 
   created() {
-    this.$store.dispatch("getCharacters");
+    this.$store.dispatch("charactersRickAndMorty/getCharacters");
   },
 };
 </script>
